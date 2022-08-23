@@ -1,9 +1,7 @@
-import "./bootstrap";
-import { createApp } from "vue/dist/vue.esm-bundler.js";
-import Test from './components/Test.vue';
+import './bootstrap';
 
-const app = createApp();
+import Alpine from 'alpinejs';
 
-app.component('Test', Test);
+window.Alpine = Alpine;
 
-app.mount("#app");
+Alpine.start();
