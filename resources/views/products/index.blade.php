@@ -10,14 +10,14 @@
                 <div tabindex="0" class="focus:outline-none">
                     <!-- Remove py-8 -->
                     <div class="mx-auto container py-8">
-                        <div class="grid grid-cols-4 grid-gap-4">
+                        <div class="grid grid-cols-4 grid-gap-4 md:grid-cols-3 md:grid-gap-2">
 
                             {{-- Cards --}}
                             @foreach ($products as $product)
                             <div tabindex="0" class="focus:outline-none mx-2 w-72 xl:mb-0 mb-8">
                                 <div>
                                     <img alt="person capturing an image" src="{{ $product->image }}" tabindex="0"
-                                        class="focus:outline-none w-full h-44" />
+                                        class="rounded-lg focus:outline-none w-full h-44" />
                                 </div>
                                 <div class="bg-white">
                                     <div class="flex items-center justify-between px-4 pt-4">
@@ -31,8 +31,8 @@
                                             </svg>
                                         </div>
                                         <div class="bg-yellow-200 py-1.5 px-6 rounded-full">
-                                            <p tabindex="0" class="focus:outline-none text-xs text-yellow-700">{{
-                                                $product->price }}</p>
+                                            <p tabindex="0" class="focus:outline-none text-sm font-medium text-red-700">{{
+                                                $product->formatted_price }}</p>
                                         </div>
                                     </div>
                                     <div class="p-4">
@@ -44,7 +44,7 @@
                                             $product->description }}</p>
 
                                         {{-- component Add To Cart --}}
-                                        <add-to-cart></add-to-cart>
+                                        <add-to-cart :product-id="{{ $product->id }}"></add-to-cart>
                                     </div>
                                 </div>
                             </div>

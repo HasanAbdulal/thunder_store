@@ -1,13 +1,33 @@
 <template>
     <div class="flex items-center justify-between py-4">
-        <button class="bg-blue-600 text-white p-2 rounded-lg px-6" @click.prevent="addToCart">
+        <button
+            class="bg-blue-600 text-white p-2 rounded-lg px-6"
+            @click.prevent="addToCart"
+        >
             Add to Cart
         </button>
     </div>
 </template>
 
 <script setup>
-const addToCart = () => {
-    console.log("added");
+
+//
+const productId = defineProps(["productId"]);
+
+//
+const addToCart = async () => {
+    // console.log(productId);
+    await axios.get("/sanctum/csrf-cookie");
+    //
+    await axios
+        .get("/api/user")
+        .then(async (res) => {
+            let response = await axios.post('/api/products', {
+                productId: productId
+            });
+
+            console.log(response);
+        })
+        .catch(err => console.log(err));
 };
 </script>
