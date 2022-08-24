@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Make a route to the product controller using the "get" function.
+Route::get('products', [ProductController::class, 'index'])
+    ->name('products.index');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
