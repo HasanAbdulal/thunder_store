@@ -13,11 +13,11 @@
                                 <th
                                     class="lg:text-right text-left pl-5 lg:pl-0"
                                 >
-                                    <span class="lg:hidden" title="quantity"
+                                    <span class="lg:hidden" title="Quantity"
                                         >Qtd</span
                                     >
                                     <span class="hidden lg:inline"
-                                        >quantity</span
+                                        >Quantity</span
                                     >
                                 </th>
                                 <th class="hidden text-right md:table-cell">
@@ -29,7 +29,7 @@
                         <tbody>
                             <!-- Looping products -->
                             <template
-                                v-for="(product, index) in products"
+                                v-for="product in products"
                                 v-bind:key="product.id"
                             >
                                 <tr>
@@ -51,15 +51,15 @@
                                                 class="mb-2 md:ml-4"
                                                 v-text="product.name"
                                             ></p>
-                                            <form action="" method="POST">
+                                            <form action="#" method="POST">
                                                 <button
                                                     type="submit"
+                                                    v-on:click.prevent="
+                                                        destroy(product.id)
+                                                    "
                                                     class="text-gray-700 md:ml-4"
                                                 >
                                                     <small
-                                                        v-on:click.prevent="
-                                                            destroy(index)
-                                                        "
                                                         >Delete product</small
                                                     >
                                                 </button>
@@ -75,7 +75,7 @@
                                             >
                                                 <button
                                                     v-on:click.prevent="
-                                                        decrease(index)
+                                                        decrease(product.id)
                                                     "
                                                 >
                                                     -
@@ -88,7 +88,7 @@
                                                 />
                                                 <button
                                                     v-on:click.prevent="
-                                                        increase(index)
+                                                        increase(product.id)
                                                     "
                                                 >
                                                     +
@@ -171,11 +171,44 @@
 </template>
 
 <script setup>
-import { onMounted } from "vue";
+import { onMounted, computed } from "vue";
 import useProduct from "../composables/products";
 import { priceFormat } from "../helpers";
 
-const { products, getProducts } = useProduct();
+const {
+    products,
+    getProducts,
+    increaseQuantity,
+    decreaseQuantity,
+    destroyProduct,
+} = useProduct();
+
+// Increase items
+const increase = async (id) => {
+    await increaseQuantity(id);
+    await getProducts();
+};
+
+// Decrease items
+const decrease = async (id) => {
+    await decreaseQuantity(id);
+    await getProducts();
+};
+
+// Deleting product
+const destroy = async (id) => {
+    await destroyProduct(id);
+    await getProducts();
+};
+
+// Total cost of the items in the basket
+const cartTotal = computed(() => {
+    let price = Object.values(products.value).reduce(
+        (acc, product) => (acc += product.price * product.quantity),
+        0
+    );
+    return priceFormat(price);
+});
 
 onMounted(async () => {
     await getProducts();

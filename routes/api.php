@@ -21,7 +21,13 @@ Route::middleware(['auth:sanctum'])->group(function () {
         return $request->user();
     });
 
-    // Count number of products
+    // Increase the number of products in the user's basket
+    Route::get('products/increase/{id}', [CartController::class, 'increase']);
+
+    // Decrease the number of products in the user's basket
+    Route::get('products/decrease/{id}', [CartController::class, 'decrease']);
+
+    // Amount of products counted
     Route::get('products/count', [CartController::class, 'count'])
             ->name('products.count');
 

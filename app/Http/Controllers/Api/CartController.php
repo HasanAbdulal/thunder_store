@@ -64,17 +64,6 @@ class CartController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
     //
     public function count()
     {
@@ -83,5 +72,29 @@ class CartController extends Controller
         return response()->json([
             'count' => $count
         ]);
+    }
+
+    // Increase the number of products in the user's basket
+    public function increase($id)
+    {
+        (new CartRepository())->increase($id);
+    }
+
+    // Decrease the number of products in the user's basket
+    public function decrease($id)
+    {
+        (new CartRepository())->decrease($id);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     * Removing the item from the shopping cart
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        (new CartRepository())->remove($id);
     }
 }
