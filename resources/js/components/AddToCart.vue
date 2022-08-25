@@ -10,24 +10,33 @@
 </template>
 
 <script setup>
+import { inject } from "vue";
+import useProduct from "../composables/products";
 
-//
+const { add } = useProduct();
 const productId = defineProps(["productId"]);
 
+// Modification instance
+// const emitter = require("tiny-emitter/instance");
+
+// Notivaication
+const toast = inject("toast");
 //
 const addToCart = async () => {
-    // console.log(productId);
+    //
     await axios.get("/sanctum/csrf-cookie");
     //
     await axios
         .get("/api/user")
-        .then(async (res) => {
-            let response = await axios.post('/api/products', {
-                productId: productId
-            });
-
-            console.log(response);
+        .then(async () => {
+            await add(productId);
+            // let cartCount =
+                // emitter.emit("refreshCartCount", cartCount);
+                // Noti
+                toast.success("Product added to shopping cart :)");
         })
-        .catch(err => console.log(err));
+        .catch(() => {
+            toast.error("Login first to add this product");
+        });
 };
 </script>

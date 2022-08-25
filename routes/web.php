@@ -22,6 +22,10 @@ Route::get('/', function () {
 Route::get('products', [ProductController::class, 'index'])
     ->name('products.index');
 
+Route::get('/clear', function () {
+    \Cart::session(auth()->user()->id)->clear();
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');

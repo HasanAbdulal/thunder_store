@@ -10,14 +10,14 @@
                 <div tabindex="0" class="focus:outline-none">
                     <!-- Remove py-8 -->
                     <div class="mx-auto container py-8">
-                        <div class="grid grid-cols-4 grid-gap-4 md:grid-cols-3 md:grid-gap-2">
+                        <div class="grid grid-cols-4 grid-gap-4 sm:grid-cols-2 sm:grid-gap-1 md:grid-cols-3 md:grid-gap-2 ">
 
                             {{-- Cards --}}
                             @foreach ($products as $product)
-                            <div tabindex="0" class="focus:outline-none mx-2 w-72 xl:mb-0 mb-8">
+                            <div tabindex="0" class="flex flex-col space-x-3 focus:outline-none mx-2 w-72 xl:mb-0 mb-8">
                                 <div>
                                     <img alt="person capturing an image" src="{{ $product->image }}" tabindex="0"
-                                        class="rounded-lg focus:outline-none w-full h-44" />
+                                        class="space rounded-lg focus:outline-none w-full h-44" />
                                 </div>
                                 <div class="bg-white">
                                     <div class="flex items-center justify-between px-4 pt-4">
