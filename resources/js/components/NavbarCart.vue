@@ -1,6 +1,6 @@
 <template>
     <div class="space-x-8 sm:ml-10 sm:flex mr-10">
-        <a href="#" class="relative">
+        <a href="/shoppingCart" class="relative">
             <span
                 class="absolute -top-1 left-4 rounded-full bg-blue-700 w-5 h-5 text-xs text-white flex items-center justify-center"
                 >{{ cartCount }}</span

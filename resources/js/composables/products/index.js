@@ -1,4 +1,15 @@
+import axios from "axios";
+import { ref } from "vue";
+
 export default function useProduct() {
+    const products = ref([]);
+
+    const getProducts = async () => {
+        let response = await axios.get('/api/products');
+        products.value = response.data.cartContent;
+    }
+
+
     // Add to basket
     const add = async (productId) => {
         let response = await axios.post("/api/products", {
@@ -16,5 +27,7 @@ export default function useProduct() {
     return {
         add,
         getCount,
+        products,
+        getProducts,
     };
 }

@@ -23,7 +23,6 @@ const productId = defineProps(["productId"]);
 const toast = inject("toast");
 //
 const addToCart = async () => {
-    //
     await axios.get("/sanctum/csrf-cookie");
     //
     await axios

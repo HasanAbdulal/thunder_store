@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ShoppingCartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,8 +20,13 @@ Route::get('/', function () {
 });
 
 // Make a route to the product controller using the "get" function.
-Route::get('products', [ProductController::class, 'index'])
+Route::get('/products', [ProductController::class, 'index'])
     ->name('products.index');
+
+// Shopping Cart
+Route::get('/shoppingCart', ShoppingCartController::class)
+        ->name('cart.index');
+
 
 Route::get('/clear', function () {
     \Cart::session(auth()->user()->id)->clear();
