@@ -57,7 +57,7 @@
                                                     v-on:click.prevent="
                                                         destroy(product.id)
                                                     "
-                                                    class="text-gray-700 md:ml-4"
+                                                    class="text-red-600 hover:underline md:ml-4"
                                                 >
                                                     <small
                                                         >Delete product</small
@@ -181,24 +181,30 @@ const {
     increaseQuantity,
     decreaseQuantity,
     destroyProduct,
+    cartCount,
 } = useProduct();
+
+// const emitter = require("tiny-emitter/instance");
 
 // Increase items
 const increase = async (id) => {
     await increaseQuantity(id);
     await getProducts();
+    // emitter.emit("refreshCartCount", cartCount.value);
 };
 
 // Decrease items
 const decrease = async (id) => {
     await decreaseQuantity(id);
     await getProducts();
+    // emitter.emit("refreshCartCount", cartCount.value);
 };
 
 // Deleting product
 const destroy = async (id) => {
     await destroyProduct(id);
     await getProducts();
+    // emitter.emit("refreshCartCount", cartCount.value);
 };
 
 // Total cost of the items in the basket

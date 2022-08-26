@@ -28,11 +28,10 @@ const addToCart = async () => {
     await axios
         .get("/api/user")
         .then(async () => {
-            await add(productId);
-            // let cartCount =
-                // emitter.emit("refreshCartCount", cartCount);
-                // Noti
-                toast.success("Product added to shopping cart :)");
+            let cartCount = await add(productId);
+            emitter.emit("refreshCartCount", cartCount);
+            // Noti
+            toast.success("Product added to shopping cart :)");
         })
         .catch(() => {
             toast.error("Login first to add this product");

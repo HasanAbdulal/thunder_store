@@ -3,11 +3,14 @@ import { ref } from "vue";
 
 export default function useProduct() {
     const products = ref([]);
+    const cartCount = ref(0); // Cart reactive
 
     // To have the product
     const getProducts = async () => {
         let response = await axios.get("/api/products");
         products.value = response.data.cartContent;
+
+        cartCount.value = response.data.cartCount;
     };
 
     // Add to basket
@@ -47,5 +50,6 @@ export default function useProduct() {
         increaseQuantity,
         decreaseQuantity,
         destroyProduct,
+        cartCount,
     };
 }

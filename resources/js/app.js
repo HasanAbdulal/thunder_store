@@ -13,9 +13,10 @@ Alpine.start();
 
 const app = createApp();
 
+
 app.component("AddToCart", AddToCart)
     .component("NavbarCart", NavbarCart)
-    .component("ShoppingCart", ShoppingCart);
+    .component("ShoppingCart", ShoppingCart)
 
 // Notivation https://github.com/MeForma/vue-toaster
 app.use(Toaster).provide("toast", app.config.globalProperties.$toast);
