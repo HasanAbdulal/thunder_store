@@ -10,17 +10,19 @@
 </template>
 
 <script setup>
-import { inject } from "vue";
 import useProduct from "../composables/products";
-
-const { add } = useProduct();
+const { add, cartCount } = useProduct();
 const productId = defineProps(["productId"]);
+// const { inject } = require("vue");
+// const toast = inject("toast");
+import { createToaster } from "@meforma/vue-toaster";
+const toast = createToaster({});
 
 // Modification instance
-// const emitter = require("tiny-emitter/instance");
+// import { Emitter } from "tiny-emitter";
 
-// Notivaication
-const toast = inject("toast");
+// Notificaication
+
 //
 const addToCart = async () => {
     await axios.get("/sanctum/csrf-cookie");
@@ -28,13 +30,13 @@ const addToCart = async () => {
     await axios
         .get("/api/user")
         .then(async () => {
-            let cartCount = await add(productId);
-            emitter.emit("refreshCartCount", cartCount);
-            // Noti
-            toast.success("Product added to shopping cart :)");
+            await add(productId.productId);
+            toast.success("Product added to shopping cart! ");
+            // emitter.emit("refreshCartCount", cartCount);
         })
         .catch(() => {
             toast.error("Login first to add this product");
+            return;
         });
 };
 </script>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use App\Repositories\CartRepository;
 
@@ -14,7 +15,7 @@ class CartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): JsonResponse
     {
         $cartContent = (new CartRepository())->content();
         $cartCount
@@ -31,7 +32,7 @@ class CartController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request): JsonResponse
     {
         //
         $product = Product::where('id', $request->productId)->first();
@@ -67,7 +68,7 @@ class CartController extends Controller
     }
 
     //
-    public function count()
+    public function count(): JsonResponse
     {
         $count = (new CartRepository())->count();
 
@@ -77,13 +78,13 @@ class CartController extends Controller
     }
 
     // Increase the number of products in the user's basket
-    public function increase($id)
+    public function increase(int $id)
     {
         (new CartRepository())->increase($id);
     }
 
     // Decrease the number of products in the user's basket
-    public function decrease($id)
+    public function decrease(int $id)
     {
         (new CartRepository())->decrease($id);
     }
@@ -95,8 +96,12 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id): JsonResponse
     {
-        (new CartRepository())->remove($id);
+        $count = (new CartRepository())->remove($id);
+
+        return response()->json([
+            'count' => $count
+        ]);
     }
 }

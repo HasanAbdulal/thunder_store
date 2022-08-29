@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,11 +17,14 @@ class ProductFactory extends Factory
      */
     public function definition()
     {
+        $name = $this->faker->sentence();
+
         return [
-            'name' =>           $this->faker->sentence(),
-            'description' =>    $this->faker->sentence(rand(5, 9), true),
+            'name' =>           $name,
+            'description' =>    $this->faker->sentences(rand(5, 9), true),
             'image' =>          $this->faker->imageUrl(),
-            'price' =>          rand(1000, 990000),
+            'slug' =>           Str::slug($name),
+            'price' =>          rand(1000, 99000),
             'active' =>         $this->faker->boolean(90),
         ];
     }

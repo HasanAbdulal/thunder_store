@@ -18,7 +18,7 @@ export default function useProduct() {
         let response = await axios.post("/api/products", {
             productId: productId,
         });
-        return response.data.cart;
+        return response.data.cartCount;
     };
 
     // Count the items

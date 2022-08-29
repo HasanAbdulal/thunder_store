@@ -17,7 +17,16 @@ class OrderFactory extends Factory
     public function definition()
     {
         return [
-            'order_number' => uniqid()
+            'order_number' => $this->generateRandomId(9)
         ];
+    }
+
+    // Generte an id
+    private function generateRandomId($length): string
+    {
+        $container = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $token = substr(str_shuffle(str_repeat($container, 8)), 0, $length);
+
+        return $token;
     }
 }

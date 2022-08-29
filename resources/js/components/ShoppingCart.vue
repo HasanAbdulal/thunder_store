@@ -54,7 +54,7 @@
                                             <form action="#" method="POST">
                                                 <button
                                                     type="submit"
-                                                    v-on:click.prevent="
+                                                    @click.prevent="
                                                         destroy(product.id)
                                                     "
                                                     class="text-red-600 hover:underline md:ml-4"
@@ -74,7 +74,7 @@
                                                 class="relative flex w-full h-8 space-x-5"
                                             >
                                                 <button
-                                                    v-on:click.prevent="
+                                                    @click.prevent="
                                                         decrease(product.id)
                                                     "
                                                 >
@@ -87,7 +87,7 @@
                                                     class="w-full font-semibold text-center text-gray-700 bg-gray-200 outline-none focus:outline-none hover:text-black focus:text-black"
                                                 />
                                                 <button
-                                                    v-on:click.prevent="
+                                                    @click.prevent="
                                                         increase(product.id)
                                                     "
                                                 >
@@ -184,12 +184,13 @@ const {
     cartCount,
 } = useProduct();
 
-// const emitter = require("tiny-emitter/instance");
+// import { Emitter } from "tiny-emitter";
 
 // Increase items
 const increase = async (id) => {
     await increaseQuantity(id);
     await getProducts();
+
     // emitter.emit("refreshCartCount", cartCount.value);
 };
 
@@ -197,6 +198,7 @@ const increase = async (id) => {
 const decrease = async (id) => {
     await decreaseQuantity(id);
     await getProducts();
+
     // emitter.emit("refreshCartCount", cartCount.value);
 };
 
@@ -204,6 +206,7 @@ const decrease = async (id) => {
 const destroy = async (id) => {
     await destroyProduct(id);
     await getProducts();
+
     // emitter.emit("refreshCartCount", cartCount.value);
 };
 

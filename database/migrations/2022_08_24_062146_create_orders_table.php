@@ -17,9 +17,11 @@ return new class extends Migration
             $table->id();
             $table->string('order_number');
             $table->dateTime('shipped_at')->nullable();
-            $table->unsignedBigInteger('user_id');
+            $table->enum('status', ['pending', 'success', 'cancelled'])
+                ->default('pending');
             $table->timestamps();
 
+            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
         });
     }

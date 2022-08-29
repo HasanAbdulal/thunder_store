@@ -1,8 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ThankYouController;
 use App\Http\Controllers\ShoppingCartController;
+use App\Http\Controllers\StripeCheckoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +30,20 @@ Route::get('/products', [ProductController::class, 'index'])
 Route::get('/shoppingCart', ShoppingCartController::class)
         ->name('cart.index');
 
+// Checkout with Stripe "Payement" To display it
+Route::get('/checkout', [StripeCheckoutController::class, 'create']);
 
+// Moving on to the payment method
+Route::post('/paymentIntent', [StripeCheckoutController::class, 'paymentIntent']);
+
+//
+Route::post('/saveOrder', OrderController::class)
+        ->name('orders.save');
+
+
+Route::get('/thankYou', ThankYouController::class)
+        ->name('thanks.index');
+//
 Route::get('/clear', function () {
     \Cart::session(auth()->user()->id)->clear();
 });

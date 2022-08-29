@@ -31,11 +31,13 @@ const { getCount } = useProduct();
 const cartCount = ref(0);
 
 // Modification instance
-// const emitter = require("tiny-emitter/instance");
+// import { Emitter } from "tiny-emitter";
+// const emitter = new Emitter();
 
 // emitter.on("refreshCartCount", (count) => (cartCount.value = count));
 
 onMounted(async () => {
+    await axios.get("/sanctum/csrf-cookie");
     cartCount.value = await getCount();
 });
 </script>
