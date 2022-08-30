@@ -14,14 +14,14 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     @forelse ($orders as $order)
-                    <table class="table-auto w-full">
+                    <table class="table-auto w-full mb-16">
                         <thead class="border-b">
                             <h2>Order n° {{ $order->order_number }} was delivered at {{ $order->created_at->format('d M Y') }}</h2>
                         </thead>
                         <tbody>
                             <tr class="border-b hover:bg-gray-50">
                                 <td class="p-4">
-                                    Name
+                                    Product name
                                 </td>
                                 <td class="p-4">
                                     Price

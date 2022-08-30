@@ -11,11 +11,13 @@
 
 <script setup>
 import useProduct from "../composables/products";
+import { createToaster } from "@meforma/vue-toaster";
+
 const { add, cartCount } = useProduct();
 const productId = defineProps(["productId"]);
 // const { inject } = require("vue");
 // const toast = inject("toast");
-import { createToaster } from "@meforma/vue-toaster";
+
 const toast = createToaster({});
 
 // Modification instance
