@@ -18,9 +18,9 @@ use App\Http\Controllers\StripeCheckoutController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/', [ProductController::class, 'index'])
+->name('homepage');
 
 // Make a route to the product controller using the "get" function.
 Route::get('/products', [ProductController::class, 'index'])

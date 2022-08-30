@@ -1,6 +1,8 @@
 <x-app-layout>
     <x-slot name="header">
-        Products list
+        <div class="flex justify-center text-3xl uppercase font-extrabold">
+            Welcome To Thunder Store
+        </div>
     </x-slot>
 
     <div class="py-12">
