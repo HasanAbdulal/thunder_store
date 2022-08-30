@@ -15,15 +15,12 @@ import { createToaster } from "@meforma/vue-toaster";
 
 const { add, cartCount } = useProduct();
 const productId = defineProps(["productId"]);
+
 // const { inject } = require("vue");
 // const toast = inject("toast");
 
+// const emitter = require("tiny-emitter/instance");
 const toast = createToaster({});
-
-// Modification instance
-// import { Emitter } from "tiny-emitter";
-
-// Notificaication
 
 //
 const addToCart = async () => {

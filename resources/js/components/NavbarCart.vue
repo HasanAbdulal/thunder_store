@@ -30,10 +30,8 @@ import useProduct from "../composables/products";
 const { getCount } = useProduct();
 const cartCount = ref(0);
 
-// Modification instance
-// import { Emitter } from "tiny-emitter";
-// const emitter = new Emitter();
-
+// Modification instant
+// const emitter = require("tiny-emitter/instance");
 // emitter.on("refreshCartCount", (count) => (cartCount.value = count));
 
 onMounted(async () => {

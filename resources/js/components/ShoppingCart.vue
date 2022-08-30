@@ -175,6 +175,7 @@ import { onMounted, computed } from "vue";
 import useProduct from "../composables/products";
 import { priceFormat } from "../helpers";
 
+// const emitter = require("tiny-emitter/instance");
 const {
     products,
     getProducts,
@@ -183,8 +184,6 @@ const {
     destroyProduct,
     cartCount,
 } = useProduct();
-
-// import { Emitter } from "tiny-emitter";
 
 // Increase items
 const increase = async (id) => {
@@ -198,9 +197,9 @@ const increase = async (id) => {
 const decrease = async (id) => {
     await decreaseQuantity(id);
     await getProducts();
-
-    // emitter.emit("refreshCartCount", cartCount.value);
 };
+//     emitter.emit("refreshCartCount", cartCount.value);
+// };
 
 // Deleting product
 const destroy = async (id) => {
