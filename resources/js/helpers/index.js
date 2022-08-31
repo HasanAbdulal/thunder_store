@@ -8,6 +8,7 @@ export const priceFormat = (price) => {
     }).format(price / 100);
 };
 
+// You save the passed order in "stripe/index.js" before redirecting to the thankYou route.
 export const saveOrder = async () => {
     await axios.post("/saveOrder");
 };

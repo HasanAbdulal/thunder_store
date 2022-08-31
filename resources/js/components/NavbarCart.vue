@@ -1,4 +1,5 @@
 <template>
+    <!-- import from layouts/navigation.blade.php -->
     <div class="space-x-8 sm:ml-10 sm:flex mr-10">
         <a href="/shoppingCart" class="relative">
             <span

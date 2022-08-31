@@ -34,10 +34,10 @@ class CartController extends Controller
      */
     public function store(Request $request): JsonResponse
     {
-        //
+        // The product's ID number should be printed on the button."add-to-cart"
         $product = Product::where('id', $request->productId)->first();
 
-        //
+        // Une classe est dédié à s'occuper de la gestion du panier.
         $count = (new CartRepository())->add($product);
         return response()->json([
             'count' => $count

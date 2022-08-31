@@ -14,7 +14,7 @@ Alpine.start();
 
 const app = createApp();
 
-// Notivation https://github.com/MeForma/vue-toaster
+// Notification https://github.com/MeForma/vue-toaster
 app.use(Toaster).provide("toast", app.config.globalProperties.$toast);
 
 app.component("AddToCart", AddToCart)

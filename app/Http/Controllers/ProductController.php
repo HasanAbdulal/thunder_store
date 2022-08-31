@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    // Place the products in a random order and only choose 20 active products.
+    // Only pick the 20 active products, then arrange them in random order.
     public function index()
     {
         $products = Product::inRandomOrder()

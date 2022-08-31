@@ -8,6 +8,7 @@ use Illuminate\Support\Collection;
 
 class CartRepository
 {
+    // https://github.com/darryldecode/laravelshoppingcart
     // Add to basket
     public function add(Product $product): int
     {
@@ -23,7 +24,7 @@ class CartRepository
         return $this->count();
     }
 
-    // Send the package's contents along with it.
+    // Send the package's contents along with it. content global
     public function content(): Collection
     {
         return \Cart::session(auth()->user()->id)->getContent();
@@ -35,7 +36,7 @@ class CartRepository
         return $this->content()->sum('quantity');
     }
 
-    //
+    // according to the payment Intent method, which renders the whole cost at euro cent
     public function total(): int
     {
         return \Cart::session(auth()->user()->id)->getTotal();

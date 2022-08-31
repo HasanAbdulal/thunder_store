@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    // save in DB the order
+    // Saving the order for the authenticated user in the database
     public function __invoke()
     {
         $order = auth()->user()->orders()->create([

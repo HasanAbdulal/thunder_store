@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 // Middleware access through auth:sanctum
 Route::middleware(['auth:sanctum'])->group(function () {
+    // A path that delivers the logged-in user to us
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
@@ -31,6 +32,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('products/count', [CartController::class, 'count'])
             ->name('products.count');
 
-    //
+    // Make a route resource to our products' api.
     Route::apiResource('products', CartController::class);
 });

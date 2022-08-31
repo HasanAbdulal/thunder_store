@@ -14,7 +14,7 @@
                     <div class="mx-auto container py-8">
                         <div class="grid grid-cols-4 grid-gap-4 sm:grid-cols-2 sm:grid-gap-1 md:grid-cols-3 md:grid-gap-2 ">
 
-                            {{-- Cards --}}
+                            {{-- Cards products --}}
                             @foreach ($products as $product)
                             <div tabindex="0" class="flex flex-col space-x-3 focus:outline-none mx-2 w-72 xl:mb-0 mb-8">
                                 <div>

@@ -13,9 +13,10 @@ class Order extends Model
 {
     use HasFactory;
 
+    // I add a placeholder title in order to safeguard the order controller.
     protected $guarded = [];
 
-    //
+    // An order belongs to a user.
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

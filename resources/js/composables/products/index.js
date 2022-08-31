@@ -10,6 +10,7 @@ export default function useProduct() {
         let response = await axios.get("/api/products");
         products.value = response.data.cartContent;
 
+        // Invoking the index in CartController to update the "cartCount"
         cartCount.value = response.data.cartCount;
     };
 
@@ -18,7 +19,7 @@ export default function useProduct() {
         let response = await axios.post("/api/products", {
             productId: productId,
         });
-        return response.data.cartCount;
+        return response.data.count;
     };
 
     // Count the items

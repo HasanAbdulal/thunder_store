@@ -210,6 +210,8 @@ const destroy = async (id) => {
 };
 
 // Total cost of the items in the basket
+// The previous value and the next value will be sent to it.
+// We'll start at zero
 const cartTotal = computed(() => {
     let price = Object.values(products.value).reduce(
         (acc, product) => (acc += product.price * product.quantity),
